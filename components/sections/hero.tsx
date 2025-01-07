@@ -50,7 +50,7 @@ export default async function Hero() {
                     "text-5xl sm:text-7xl md:text-7xl lg:text-7xl",
                   )}
                 >
-                  UI library for Design Engineers
+                  UI library for Design Engineers - by @sh20raj
                 </h1>
               </div>
 
