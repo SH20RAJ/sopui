@@ -40,11 +40,25 @@ npx shadcn@latest add "https://magicui.design/r/animated-list"
 
 </Tabs>
 
+## Usage
+
+```tsx
+import { AnimatedList } from "@/components/magicui/animated-list";
+```
+
+```tsx
+<AnimatedList>
+  <p>Item 1</p>
+  <p>Item 2</p>
+  <p>Item 3</p>
+</AnimatedList>
+```
+
 ## Props
 
 ### Animated List
 
-| Prop      | Type   | Description                       | Default |
-| --------- | ------ | --------------------------------- | ------- |
-| className | string | The class name for the component  | ""      |
-| delay     | number | The delay between each item in ms | 1000    |
+| Prop        | Type     | Default | Description                       |
+| ----------- | -------- | ------- | --------------------------------- |
+| `className` | `string` | `-`     | The class name for the component  |
+| `delay`     | `number` | `1000`  | The delay between each item in ms |

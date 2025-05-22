@@ -46,11 +46,21 @@ npm install motion
 
 </Tabs>
 
+## Usage
+
+```tsx
+import { WordRotate } from "@/components/magicui/word-rotate";
+```
+
+```tsx
+<WordRotate words={["Word", "Rotate"]} />
+```
+
 ## Props
 
-| Prop        | Type            | Description                                   | Default |
-| ----------- | --------------- | --------------------------------------------- | ------- |
-| className   | string          | The class name to be applied to the component |         |
-| duration    | number          | Duration of the animation                     | 2500    |
-| words       | string[]        | An array of words to rotate through           | ""      |
-| motionProps | HTMLMotionProps | An object containing motion animation props   | {}      |
+| Prop          | Type              | Default | Description                                   |
+| ------------- | ----------------- | ------- | --------------------------------------------- |
+| `className`   | `string`          | `-`     | The class name to be applied to the component |
+| `duration`    | `number`          | `2500`  | Duration of the animation                     |
+| `words`       | `string[]`        | `""`    | An array of words to rotate through           |
+| `motionProps` | `HTMLMotionProps` | `{}`    | An object containing motion animation props   |

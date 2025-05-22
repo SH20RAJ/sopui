@@ -47,17 +47,34 @@ npx shadcn@latest add "https://magicui.design/r/dot-pattern"
 
 <ComponentPreview name="dot-pattern-linear-gradient" />
 
+### With Glow Effect
+
+<ComponentPreview name="dot-pattern-with-glow-effect" />
+
+### Usage
+
+```tsx
+import { DotPattern } from "@/components/magicui/dot-pattern";
+```
+
+```tsx
+<div className="relative h-[500px] w-full overflow-hidden">
+  <DotPattern />
+</div>
+```
+
 ## Props
 
 ### Dot Pattern
 
-| Prop      | Type   | Description                   | Default |
-| --------- | ------ | ----------------------------- | ------- |
-| width     | any    | Width of the dot pattern      | 16      |
-| height    | any    | Height of the dot pattern     | 16      |
-| x         | any    | X position of the dot         | 0       |
-| y         | any    | Y position of the dot         | 0       |
-| cx        | any    | X position of the circle      | 1       |
-| cy        | any    | Y position of the circle      | 1       |
-| cr        | any    | Radius of the circle          | 1       |
-| className | string | Class name of the dot pattern | -       |
+| Prop        | Type      | Default | Description                                  |
+| ----------- | --------- | ------- | -------------------------------------------- |
+| `width`     | `any`     | `16`    | Width of the dot pattern                     |
+| `height`    | `any`     | `16`    | Height of the dot pattern                    |
+| `x`         | `any`     | `0`     | X position of the dot                        |
+| `y`         | `any`     | `0`     | Y position of the dot                        |
+| `cx`        | `any`     | `1`     | X position of the circle                     |
+| `cy`        | `any`     | `1`     | Y position of the circle                     |
+| `cr`        | `any`     | `1`     | Radius of the circle                         |
+| `className` | `string`  | `-`     | Class name of the dot pattern                |
+| `glow`      | `boolean` | `false` | Activates the glow effect in the dot pattern |

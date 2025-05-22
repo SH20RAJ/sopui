@@ -40,12 +40,23 @@ npx shadcn@latest add "https://magicui.design/r/flip-text"
 
 </Tabs>
 
+## Usage
+
+```tsx
+import { FlipText } from "@/components/magicui/flip-text";
+```
+
+```tsx
+<FlipText>Flip Text</FlipText>
+```
+
 ## Props
 
-| Prop          | Type            | Description                                   | Default |
-| ------------- | --------------- | --------------------------------------------- | ------- |
-| className     | string          | The class name to be applied to the component |         |
-| duration      | number          | Duration of the animation                     | 0.2     |
-| delayMultiple | number          | Transition delay multiplier.                  | 0.08    |
-| word          | string          | An array of words to rotate through           | ""      |
-| motionProps   | HTMLMotionProps | An object containing motion animation props   | {}      |
+| Prop            | Type              | Default    | Description                                   |
+| --------------- | ----------------- | ---------- | --------------------------------------------- |
+| `className`     | `string`          | `-`        | The class name to be applied to the component |
+| `duration`      | `number`          | `0.5`      | Duration of the animation                     |
+| `delayMultiple` | `number`          | `0.08`     | Transition delay multiplier.                  |
+| `variants`      | `Variants`        | `{}`       | An object containing motion variants          |
+| `as`            | `ElementType`     | `span`     | The element type of the component             |
+| `children`      | `React.ReactNode` | `required` | The children of the component                 |

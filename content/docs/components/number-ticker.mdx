@@ -47,11 +47,26 @@ npx shadcn@latest add "https://magicui.design/r/number-ticker"
 
 <ComponentPreview name="number-ticker-decimal-demo" />
 
+### Start Value
+
+<ComponentPreview name="number-ticker-demo-2" />
+
+### Usage
+
+```tsx
+import { NumberTicker } from "@/components/magicui/number-ticker";
+```
+
+```tsx
+<NumberTicker value={100} />
+```
+
 ## Props
 
-| Prop          | Type       | Description                          | Default |
-| ------------- | ---------- | ------------------------------------ | ------- |
-| value         | int        | The value to count to                | 0       |
-| direction     | up \| down | The direction to count in            | up      |
-| delay         | number     | The delay before counting            | 0       |
-| decimalPlaces | number     | The number of decimal places to show | 0       |
+| Prop            | Type         | Default | Description                          |
+| --------------- | ------------ | ------- | ------------------------------------ |
+| `value`         | `int`        | `0`     | The value to count to                |
+| `direction`     | `up \| down` | `"up"`  | The direction to count in            |
+| `delay`         | `number`     | `0`     | The delay before counting            |
+| `decimalPlaces` | `number`     | `0`     | The number of decimal places to show |
+| `startValue`    | `number`     | `0`     | The value to start counting from     |

@@ -2,11 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "target": "esnext",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -14,7 +10,7 @@
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
@@ -25,15 +21,13 @@
       }
     ],
     "paths": {
-      "@/*": [
-        "./*"
-      ],
-      "@/components/magicui/*": [
-        "./registry/default/magicui/*"
-      ],
-      "@/components/example/*": [
-        "./registry/default/example/*"
-      ],
+      "@/*": ["./*"],
+      // "@/components/magicui/*": [
+      //   "registry/magicui/*"
+      // ],
+      // "@/components/example/*": [
+      //   "registry/example/*"
+      // ],
       "content-collections": ["./.content-collections/generated"]
     }
   },
@@ -42,13 +36,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    ".content-colletions/generated",
+    ".content-colletions/generated"
   ],
-  "exclude": [
-    "node_modules",
-    "packages/**/*",
-    "scripts/**/*",
-    "scripts/build-registry.ts", 
-    "__registry__"
-  ]
+  "exclude": ["node_modules", "packages/**/*", "scripts/**/*"]
 }

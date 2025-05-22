@@ -1,4 +1,5 @@
 import { Callout } from "@/components/callout";
+import { CodeBlockCommand } from "@/components/code-block-command";
 import RepoDownload from "@/components/repo-download";
 import TechStack from "@/components/tech-stack";
 import TemplatePreview from "@/components/template-preview";
@@ -11,13 +12,13 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Event } from "@/lib/events";
 import { cn } from "@/lib/utils";
-import TweetCard from "@/registry/default/magicui/tweet-card";
+import { TweetCard } from "@/registry/magicui/tweet-card";
 import { useMDXComponent } from "@content-collections/mdx/react";
 import Image from "next/image";
 import Link from "next/link";
 import { ComponentPreview } from "./component-preview";
 import { ComponentSource } from "./component-source";
-import { CopyButton, CopyNpmCommandButton } from "./copy-button";
+import { CopyButton } from "./copy-button";
 
 const CustomLink = (props: any) => {
   const href = props.href;
@@ -132,7 +133,7 @@ const components = {
     />
   ),
   table: ({ className, ...props }: React.HTMLAttributes<HTMLTableElement>) => (
-    <div className="my-6 w-full overflow-y-auto rounded-lg border border-border">
+    <div className="my-6 w-full overflow-y-auto rounded-lg border dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-400">
       <table
         className={cn("my-0 w-full overflow-hidden", className)}
         {...props}
@@ -143,27 +144,15 @@ const components = {
     className,
     ...props
   }: React.HTMLAttributes<HTMLTableSectionElement>) => (
-    <thead
-      className={cn(
-        "border-b last:border-b-0 odd:bg-background even:bg-background/50",
-        className,
-      )}
-      {...props}
-    />
+    <thead className={cn("border-b last:border-b-0", className)} {...props} />
   ),
   tr: ({ className, ...props }: React.HTMLAttributes<HTMLTableRowElement>) => (
-    <tr
-      className={cn(
-        "border-b last:border-b-0 odd:bg-background even:bg-background/50",
-        className,
-      )}
-      {...props}
-    />
+    <tr className={cn("border-b last:border-b-0", className)} {...props} />
   ),
   th: ({ className, ...props }: React.HTMLAttributes<HTMLTableCellElement>) => (
     <th
       className={cn(
-        "text-balance border-r border-border bg-neutral-50 px-6 py-3 text-left font-mono text-sm font-semibold tracking-tight text-secondary-foreground last:border-r-0 dark:bg-neutral-950",
+        "text-balance border-r px-6 py-3 text-left font-mono text-sm font-semibold tracking-tight last:border-r-0",
         className,
       )}
       {...props}
@@ -172,7 +161,7 @@ const components = {
   td: ({ className, ...props }: React.HTMLAttributes<HTMLTableCellElement>) => (
     <td
       className={cn(
-        "border-r border-border px-6 py-4 text-sm text-secondary-foreground last:border-r-0 [&[align=center]]:text-center [&[align=right]]:text-right",
+        "border-r px-6 py-3 text-sm last:border-r-0 [&[align=center]]:text-center [&[align=right]]:text-right",
         className,
       )}
       {...props}
@@ -189,12 +178,15 @@ const components = {
   ),
   Steps: ({ ...props }) => (
     <div
-      className="[&>h3]:step steps mb-12 ml-4 border-l pl-8 [counter-reset:step]"
+      className="[&>h3]:step steps mb-12 ml-4 pl-8 [counter-reset:step] relative before:absolute before:left-0 before:top-0 before:h-full before:w-px before:bg-gradient-to-b before:from-transparent before:via-muted-foreground/50 before:to-transparent"
       {...props}
     />
   ),
   Tabs: ({ className, ...props }: React.ComponentProps<typeof Tabs>) => (
-    <Tabs className={cn("relative mt-6 w-full", className)} {...props} />
+    <Tabs
+      className={cn("relative mt-6 w-full overflow-x-auto", className)}
+      {...props}
+    />
   ),
   TabsList: ({
     className,
@@ -242,11 +234,9 @@ const components = {
     __withMeta__,
     __src__,
     __event__,
-    // __style__,
     __name__,
     ...props
   }: React.HTMLAttributes<HTMLPreElement> & {
-    // __style__?: Style["name"]
     __rawString__?: string;
     __npmCommand__?: string;
     __pnpmCommand__?: string;
@@ -257,6 +247,20 @@ const components = {
     __event__?: Event["name"];
     __name__?: string;
   }) => {
+    const isNpmCommand =
+      __npmCommand__ && __yarnCommand__ && __pnpmCommand__ && __bunCommand__;
+
+    if (isNpmCommand) {
+      return (
+        <CodeBlockCommand
+          __npmCommand__={__npmCommand__}
+          __yarnCommand__={__yarnCommand__}
+          __pnpmCommand__={__pnpmCommand__}
+          __bunCommand__={__bunCommand__}
+        />
+      );
+    }
+
     return (
       <>
         <pre
@@ -274,20 +278,6 @@ const components = {
             className={cn("absolute right-4 top-4", __withMeta__ && "top-16")}
           />
         )}
-        {__npmCommand__ &&
-          __yarnCommand__ &&
-          __pnpmCommand__ &&
-          __bunCommand__ && (
-            <CopyNpmCommandButton
-              commands={{
-                __npmCommand__,
-                __pnpmCommand__,
-                __yarnCommand__,
-                __bunCommand__,
-              }}
-              className={cn("absolute right-4 top-4", __withMeta__ && "top-16")}
-            />
-          )}
       </>
     );
   },

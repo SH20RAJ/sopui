@@ -46,9 +46,21 @@ npx shadcn@latest add "https://magicui.design/r/icon-cloud"
 
 <ComponentPreview name="icon-cloud-demo-3" />
 
+## Usage
+
+```tsx
+import { IconCloud } from "@/components/magicui/icon-cloud";
+```
+
+```tsx
+<div className="relative overflow-hidden">
+  <IconCloud images={images} />
+</div>
+```
+
 ## Props
 
-| Prop   | Type              | Description                                | Default |
-| ------ | ----------------- | ------------------------------------------ | ------- |
-| icons  | React.ReactNode[] | Array of icons to render in the cloud      | []      |
-| images | string[]          | Array of image URLs to render in the cloud | []      |
+| Prop     | Type                | Default | Description                                |
+| -------- | ------------------- | ------- | ------------------------------------------ |
+| `icons`  | `React.ReactNode[]` | `[]`    | Array of icons to render in the cloud      |
+| `images` | `string[]`          | `[]`    | Array of image URLs to render in the cloud |

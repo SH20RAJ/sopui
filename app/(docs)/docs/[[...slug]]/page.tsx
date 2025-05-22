@@ -1,12 +1,8 @@
 import { Mdx } from "@/components/mdx-components";
 import { DocPager } from "@/components/pager";
 import { badgeVariants } from "@/components/ui/badge";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { siteConfig } from "@/config/site";
 import { getTableOfContents } from "@/lib/toc";
 import { absoluteUrl, cn } from "@/lib/utils";
-
-import "@/styles/mdx.css";
 
 import { ChevronRightIcon, ExternalLinkIcon } from "@radix-ui/react-icons";
 import { allDocs } from "content-collections";
@@ -15,6 +11,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { Contribute } from "@/components/contribute";
+import { SidebarCTA } from "@/components/sidebar-cta";
 import { TableOfContents } from "@/components/toc";
 
 interface DocPageProps {
@@ -24,7 +21,7 @@ interface DocPageProps {
 }
 
 async function getDocFromParams({ params }: DocPageProps) {
-  const slug = params.slug?.join("/") || "";
+  const slug = params.slug?.join("/") || "index";
   const doc = allDocs.find((doc) => doc.slugAsParams === slug);
 
   if (!doc) {
@@ -56,7 +53,6 @@ export async function generateMetadata({
           url: doc.image,
           width: 1200,
           height: 630,
-          alt: siteConfig.name,
         },
       ],
     },
@@ -88,12 +84,8 @@ export default async function DocPage({ params }: DocPageProps) {
   const toc = await getTableOfContents(doc.body.raw);
 
   return (
-    <main
-      className={cn("relative py-6 lg:gap-10 lg:py-8 xl:grid ", {
-        "xl:grid-cols-[1fr_300px]": doc.toc,
-      })}
-    >
-      <div className="mx-auto w-full min-w-0">
+    <main className="relative lg:gap-10 xl:grid xl:grid-cols-[1fr_300px]">
+      <div className="mx-auto w-full min-w-0 max-w-3xl py-6 lg:py-8">
         <div className="mb-4 flex items-center space-x-1 text-sm text-muted-foreground">
           <div className="truncate">Docs</div>
           <ChevronRightIcon className="size-4" />
@@ -141,14 +133,11 @@ export default async function DocPage({ params }: DocPageProps) {
         <DocPager doc={doc} />
       </div>
       {doc.toc && (
-        <div className="hidden text-sm xl:block">
-          <div className="sticky top-16 -mt-10 pt-4">
-            <ScrollArea className="pb-10">
-              <div className="sticky top-16 -mt-10 h-[calc(100vh-3.5rem)] space-y-4 py-12">
-                <TableOfContents toc={toc} />
-                <Contribute doc={doc} />
-              </div>
-            </ScrollArea>
+        <div className="hidden border-l border-border py-6 pl-6 text-sm xl:block">
+          <div className="sticky top-[90px] h-[calc(100vh-3.5rem)] space-y-4">
+            <TableOfContents toc={toc} />
+            <Contribute doc={doc} />
+            <SidebarCTA />
           </div>
         </div>
       )}

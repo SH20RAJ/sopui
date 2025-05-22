@@ -4,8 +4,6 @@ import { Mdx } from "@/components/mdx-components";
 import { siteConfig } from "@/config/site";
 import { absoluteUrl } from "@/lib/utils";
 
-import "@/styles/mdx.css";
-
 import { allPages } from "content-collections";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -56,7 +54,6 @@ export async function generateMetadata({
           url: ogUrl.toString(),
           width: 1200,
           height: 630,
-          alt: page.title,
         },
       ],
     },

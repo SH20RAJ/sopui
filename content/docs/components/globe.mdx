@@ -7,11 +7,6 @@ published: true
 video: https://cdn.magicui.design/globe.mp4
 ---
 
-## ⚠️ Warning
-
-> The globe has known performance issues causing computer GPU and CPU to spike.
-> See [here](https://github.com/magicuidesign/magicui/issues/42) for more details.
-
 <ComponentPreview name="globe-demo" />
 
 ## Installation
@@ -37,7 +32,7 @@ npx shadcn@latest add "https://magicui.design/r/globe"
 <Step>Install the following dependencies:</Step>
 
 ```bash
-npm install cobe
+npm install cobe motion
 ```
 
 <Step>Copy and paste the following code into your project.</Step>
@@ -52,14 +47,22 @@ npm install cobe
 
 </Tabs>
 
+## Usage
+
+```tsx
+import { Globe } from "@/components/magicui/globe";
+```
+
+```tsx
+<Globe />
+```
+
 ## Props
 
-### Globe
-
-| Prop      | Type        | Description                                                                                    | Default |
-| --------- | ----------- | ---------------------------------------------------------------------------------------------- | ------- |
-| className | string      | The css classes for the component                                                              |         |
-| config    | COBEOptions | The configuration options for the globe. More details [here](https://cobe.vercel.app/docs/api) | `{}`    |
+| Prop        | Type          | Default | Description                                                                                    |
+| ----------- | ------------- | ------- | ---------------------------------------------------------------------------------------------- |
+| `className` | `string`      | `-`     | The css classes for the component                                                              |
+| `config`    | `COBEOptions` | `{}`    | The configuration options for the globe. More details [here](https://cobe.vercel.app/docs/api) |
 
 ## Credits
 

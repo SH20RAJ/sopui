@@ -40,14 +40,24 @@ npx shadcn@latest add "https://magicui.design/r/sparkles-text"
 
 </Tabs>
 
+## Usage
+
+```tsx
+import { SparklesText } from "@/components/magicui/sparkles-text";
+```
+
+```tsx
+<SparklesText>Sparkles Text</SparklesText>
+```
+
 ## Props
 
-| Prop          | Type   | Description                                        | Default                                  |
-| ------------- | ------ | -------------------------------------------------- | ---------------------------------------- |
-| text          | string | The text to display                                | -                                        |
-| className     | string | The class name to be applied to the sparkles text. | -                                        |
-| sparklesCount | number | sparkles count that appears on the text            | 10                                       |
-| colors        | object | the sparkles colors                                | `{first: '#A07CFE'; second: '#FE8FB5';}` |
+| Prop            | Type     | Default                                 | Description                                        |
+| --------------- | -------- | --------------------------------------- | -------------------------------------------------- |
+| `children`      | `string` | `-`                                     | The content to display                             |
+| `className`     | `string` | `-`                                     | The class name to be applied to the sparkles text. |
+| `sparklesCount` | `number` | `10`                                    | sparkles count that appears on the text            |
+| `colors`        | `object` | `{first: '#A07CFE', second: '#FE8FB5'}` | the sparkles colors                                |
 
 ## Credits
 

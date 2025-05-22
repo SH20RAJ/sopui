@@ -54,7 +54,7 @@ To add a new component to MagicUI, you will need to modify several files. Follow
 
 ### 1. Create Component
 
-Create the main component in `registry/default/magicui/example-component.tsx`
+Create the main component in `registry/magicui/example-component.tsx`
 
 ```typescript
 import React from 'react'
@@ -70,10 +70,10 @@ export default function ExampleComponent() {
 
 ### 2. Create Component Demo
 
-Provide a basic example to showcase your component in `registry/default/example/example-component-demo.tsx`
+Provide a basic example to showcase your component in `registry/example/example-component-demo.tsx`
 
 ```typescript
-import ExampleComponent from '@/registry/default/magicui/example-component'
+import ExampleComponent from '@/registry/magicui/example-component'
 
 export default function ExampleComponentDemo() {
   return (
@@ -123,7 +123,7 @@ published: true
 <TabsContent value="cli">
 
 ```bash
-npx magicui-cli add example-component
+npx shadcn@latest add "https://magicui.design/r/example-component"
 ```
 
 </TabsContent>
@@ -138,19 +138,34 @@ npx magicui-cli add example-component
 
 <Step>Update the import paths to match your project setup.</Step>
 
+<Step>Add the required CSS animations</Step>
+
+<Step>Add the following animations to your global CSS file inside the `@theme inline` block (e.g., `app/globals.css` or similar)</Step>
+
+```css title="app/globals.css" {1-2,4-18}
+--animate-example: example var(--duration) infinite linear;
+
+@keyframes example {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100% - var(--gap)));
+  }
+}
+```
+
 </Steps>
 
 </TabsContent>
 
 </Tabs>
 
-<ComponentSource name="example-component" />
-
 ## Props
 
-| Prop  | Type   | Description                | Default |
-| ----- | ------ | -------------------------- | ------- |
-| color | String | The color of the component | "blue"  |
+| Prop    | Type     | Default  | Description                |
+| ------- | -------- | -------- | -------------------------- |
+| `color` | `String` | `"blue"` | The color of the component |
 ````
 
 ### 5. Update Registry
@@ -165,8 +180,34 @@ export const ui: Registry = [
   {
     name: "example-component",
     type: "registry:ui",
-    files: ["magicui/example-component.tsx"],
-    // Add any dependencies or tailwind configurations if needed
+    title: "Example Component",
+    description:
+      "A versatile component that can be used to display various types of content such as text, images, or videos.",
+    dependencies: ["motion"],
+    files: [
+      {
+        path: "registry/magicui/example-component.tsx",
+        type: "registry:ui",
+        target: "components/magicui/example-component.tsx",
+      },
+    ],
+    // Add CSS variables for the component
+    cssVars: {
+      theme: {
+        "animate-example": "example var(--duration) infinite linear",
+      },
+    },
+    // Add CSS keyframes for the component
+    css: {
+      "@keyframes example": {
+        from: {
+          transform: "translateX(0)",
+        },
+        to: {
+          transform: "translateX(calc(-100% - var(--gap)))",
+        },
+      },
+    },
   },
 ];
 ```
@@ -178,9 +219,15 @@ export const examples: Registry = [
   // ... existing examples ...
   {
     name: "example-component-demo",
+    description: "An example of the example-component",
     type: "registry:example",
     registryDependencies: ["example-component"],
-    files: ["example/example-component-demo.tsx"],
+    files: [
+      {
+        path: "registry/example/example-component-demo.tsx",
+        type: "registry:example",
+      },
+    ],
   },
 ];
 ```
@@ -192,6 +239,18 @@ Make sure to add any necessary dependencies, tailwind configurations, or other p
 ```bash
 pnpm build:registry
 ```
+
+### 7. Format and fix linting before committing
+
+```bash
+pnpm format:write
+```
+
+```bash
+pnpm lint:fix
+```
+
+Make sure to run these two commands before committing your changes.
 
 ## Adding to the showcase
 
